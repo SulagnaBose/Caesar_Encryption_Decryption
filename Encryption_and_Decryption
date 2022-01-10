@@ -1,0 +1,44 @@
+#Caesar encrytion and Decryption
+
+def Encrypted_msg(string, shift):
+    ciper = ''
+    #Special_char = [',', '.', '!', '#', '&', '*', '(',')','%', '$', '@', '^', '-', '+', '[', ']','{', '}']
+    for i in string:
+        if i == ' ':
+            ciper+= i
+        elif (i == ',' or i== '.' or i== '!' or i== '#' or i=='&' or i=='*' or i=='(' or i==')' or i=='%' or i=='$' or i=='@' or i=='^' or i=='-' or i=='+' or i=='[' or i==']' or i=='{' or i== '}'):
+            ciper+= i
+        elif i.isupper():
+            ciper+= chr((ord(i)+shift-65)%26+65)
+        else:
+            ciper+= chr((ord(i)+shift-97)%26+97)
+    return ciper
+
+
+def Decrypted_msg(string, shift):
+    shift = 26 - shift
+    d_ciper = ''
+    #Special_char = (',', '.', '!', '#', '&', '*', '(',')','%', '$', '@', '^', '-', '+', '[', ']','{', '}')
+    #print(Special_char)
+    #Special_char = {',', '.', '!', '#', '&', '*', '(',')','%', '$', '@', '^', '-', '+', '[', ']','{', '}'}
+    for i in string:
+        if i == ' ':
+            d_ciper+=i
+        #elif (i == Special_char):
+            #d_ciper+= i
+        elif (i == ',' or i== '.' or i== '!' or i== '#' or i=='&' or i=='*' or i=='(' or i==')' or i=='%' or i=='$' or i=='@' or i=='^' or i=='-' or i=='+' or i=='[' or i==']' or i=='{' or i== '}'):
+            d_ciper+= i
+        elif i.isupper():
+            d_ciper+= chr((ord(i)+shift-65)%26+65)
+        else:
+            d_ciper+= chr((ord(i)+shift-97)%26+97)
+    return d_ciper
+
+
+msg = input("Enter a msg: ")
+s = int(input("Enter the key(integer value): "))
+print("Original Msg: ", msg)
+e_msg = Encrypted_msg(msg,s)
+print("Encrypted msg: ", e_msg)
+d_msg = Decrypted_msg(e_msg,s)
+print("Decrypted msg: ", d_msg)
